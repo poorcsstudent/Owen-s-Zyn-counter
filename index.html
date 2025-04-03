@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Money Accumulator</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    .amount { font-size: 2em; color: green; }
+  </style>
+</head>
+<body>
+
+  <h1>Continuous Earnings Tracker</h1>
+  <p>Total: <span class="amount" id="total">$1560.0000</span></p>
+
+  <script>
+    const baseAmount = 1560;
+    const ratePerMinute = 0.0014;
+    
+    // Replace this with the actual start time
+    const startTime = new Date('2025-04-03T00:00:00Z'); // UTC midnight April 3, 2025
+
+    function updateTotal() {
+      const now = new Date();
+      const elapsedMs = now - startTime;
+      const elapsedMinutes = elapsedMs / (1000 * 60);
+      const addedAmount = elapsedMinutes * ratePerMinute;
+      const total = baseAmount + addedAmount;
+      
+      document.getElementById('total').textContent = `$${total.toFixed(4)}`;
+    }
+
+    updateTotal(); // initial call
+    setInterval(updateTotal, 5000); // update every 5 seconds
+  </script>
+
+</body>
+</html>
